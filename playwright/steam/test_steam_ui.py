@@ -1,5 +1,15 @@
 import pytest
 
+def test_search_elden_ring(page):
+    page.goto("https://store.steampowered.com")
+    page.locator("input[name='term']").fill("Elden Ring")
+    page.keyboard.press("Enter")
+    page.wait_for_load_state("networkidle")
+    assert "Steam Search" in page.title()
+    
+    first_result = page.locator(".title").first.inner_text()
+    assert "ELDEN RING" in first_result
+
 @pytest.mark.parametrize("ageday, agemonth, ageyear, should_pass", [
     ("1",     "January", "1990", True),
     ("12",    "December", "2005", True),
