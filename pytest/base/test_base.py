@@ -1,6 +1,6 @@
 import requests
 
-from base.conftest import base_url
+from pytest.base.conftest import base_url
 
 def test_get_post_returns_200(base_url):
     response = requests.get(f"{base_url}/posts/1")
