@@ -1,5 +1,5 @@
 import pytest
 
 @pytest.fixture
-def base_url():
+def api_url():
     return "https://jsonplaceholder.typicode.com"
