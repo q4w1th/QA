@@ -1,0 +1,29 @@
+name: QA Automation Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install requests pytest python-dotenv
+
+      - name: Run base API tests
+        run: pytest pytest/base/test_base.py -v
+
+      - name: Run Steam API tests
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+        run: pytest pytest/steam_api_testing/test_steam.py -v
