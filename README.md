@@ -91,7 +91,7 @@ Then navigate to [http://localhost:8089](http://localhost:8089) to configure the
 ## Setup
 
 ```bash
-pip install requests pytest python-dotenv playwright pytest-playwright locust
+pip install -r requirements.txt
 playwright install
 ```
 
