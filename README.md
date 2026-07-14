@@ -2,7 +2,7 @@
 
 Personal QA automation portfolio built while transitioning from Manual QA to Automation QA.
 
-**Stack:** Python 3.13 · pytest · requests · Playwright · python-dotenv
+**Stack:** Python 3.13 · pytest · requests · Playwright · python-dotenv · Locust
 
 ---
 
@@ -67,10 +67,31 @@ pytest test_steam_ui.py -v --headed
 
 ---
 
+### 4. Load & Performance Tests — `locust/`
+
+Load testing simulation using [Locust](https://locust.io/) to measure system behavior under load.
+
+**Covers:**
+- Multi-scenario user flow simulation (browsing posts feed, viewing single posts, checking user profiles, and creating posts)
+- User action weighting (e.g. browsing is 3x more frequent than creating a post)
+- Metric aggregation via dynamic naming (avoids report pollution by grouping different IDs under a single path)
+- Real-time performance metrics tracking (RPS, response times, fail rate)
+
+**Run:**
+```bash
+# From workspace root
+python -m locust -f locust/locustfile.py --host https://jsonplaceholder.typicode.com
+# Or if locust command is in your PATH:
+# locust -f locust/locustfile.py --host https://jsonplaceholder.typicode.com
+```
+Then navigate to [http://localhost:8089](http://localhost:8089) to configure the target users and run the load simulation.
+
+---
+
 ## Setup
 
 ```bash
-pip install requests pytest python-dotenv playwright pytest-playwright
+pip install requests pytest python-dotenv playwright pytest-playwright locust
 playwright install
 ```
 
