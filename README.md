@@ -50,7 +50,7 @@ pytest test_steam.py -v
 
 ---
 
-### 3. Steam UI Tests — `playwright/steam/`
+### 3. Steam UI Tests — `playwright_tests/steam/`
 
 End-to-end UI tests using [Playwright](https://playwright.dev/python/).
 
@@ -61,7 +61,7 @@ End-to-end UI tests using [Playwright](https://playwright.dev/python/).
 
 **Run:**
 ```bash
-cd playwright/steam
+cd playwright_tests/steam
 pytest test_steam_ui.py -v --headed
 ```
 
