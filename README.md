@@ -86,6 +86,15 @@ python -m locust -f locust/locustfile.py --host https://jsonplaceholder.typicode
 ```
 Then navigate to [http://localhost:8089](http://localhost:8089) to configure the target users and run the load simulation.
 
+## Reports
+
+To generate visual HTML test reports locally, run tests with the `--html` option:
+```bash
+# Example: running UI tests and generating a self-contained report
+pytest playwright_tests/steam/test_steam_ui.py -v --html=report.html --self-contained-html
+```
+Reports are also automatically generated in CI/CD and uploaded as job artifacts in GitHub Actions.
+
 ---
 
 ## Setup

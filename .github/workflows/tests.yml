@@ -22,13 +22,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run base API tests
-        run: pytest pytest/base/test_base.py -v
-
-      - name: Run Steam API tests
+      - name: Run API tests
         env:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
-        run: pytest pytest/steam_api_testing/test_steam.py -v
+        run: pytest pytest/base/test_base.py pytest/steam_api_testing/test_steam.py -v --html=report-api.html --self-contained-html
+
+      - name: Upload API Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-report
+          path: report-api.html
 
   ui-tests:
     runs-on: ubuntu-latest
@@ -49,4 +53,11 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Run Playwright UI tests
-        run: pytest playwright_tests/steam/test_steam_ui.py -v
+        run: pytest playwright_tests/steam/test_steam_ui.py -v --html=report-ui.html --self-contained-html
+
+      - name: Upload UI Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-test-report
+          path: report-ui.html
